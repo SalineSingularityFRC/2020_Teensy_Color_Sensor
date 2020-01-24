@@ -1,4 +1,5 @@
 #include <Wire.h>
+#include "include/CircularBuffer.h"
 
 // Converts 20 binary bits to an integer, where the last bit of the first byte is the least significant
 // and only the last four bits of the last bytes is used
@@ -61,19 +62,8 @@ void loop() {
   uint32_t green = To20Bit(raw); //First three bytes
   uint32_t blue= To20Bit(raw + 3); //Second three bytes
   uint32_t red = To20Bit(raw + 6); //Last three byes
-  /*Serial.print("R: ");
-  Serial.println(red);
-  Serial.print("G: ");
-  Serial.println(green);
-  Serial.print("B: ");
-  Serial.println(blue);*/
 
   Serial.print(red); Serial.print(","); Serial.print(green); Serial.print(","); Serial.println(blue);
   delay(10);
-  /*Wire.beginTransmission(4); 
-  for(int ii = 0; ii < 9; ii++){ 
-    Wire.write(raw[ii]);
-  }
-  Wire.endTransmission();*/
 
 }
