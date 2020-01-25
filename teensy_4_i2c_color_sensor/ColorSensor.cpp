@@ -9,12 +9,20 @@
 //Constructor to create an instance of a ColorSensor class
 int ColorSensor::ColorMatcher(){
     //You should initialize each ColorBuffer in here: red, green, and blue
+    colorBuffer red = new CircularBuffer;
+    colorBuffer green = new CircularBuffer;
+    colorBuffer blue = new CircularBuffer;
 }
 
 //Convert raw data to doubles we can use
 double[3] ColorSensor::convertColor(int *rawColor){
     //This function will take raw data (Three integers) from a color sensor and turn it into three percentages
     //In total, your three doubles should add up to 1.0
+    double color[] = *rawColor[];
+    double total = color[0] + color[1] + color[2];
+    double percentColor[] = {(color[0]/total),(color[1]/total), (color[2]/total)};
+    return precentColor;
+    
 }
 
 int ColorSensor::senseColor(int *rawColor) {
