@@ -17,7 +17,6 @@
           number += colorBuffer[i];
          }
        double average = number/(double)size;
-       //update for loop
        
        return average;
     }
