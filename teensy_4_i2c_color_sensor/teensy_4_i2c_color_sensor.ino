@@ -1,5 +1,5 @@
 #include <Wire.h>
-#include "include/CircularBuffer.h"
+#include "include/ColorSensor.h"
 
 // Converts 20 binary bits to an integer, where the last bit of the first byte is the least significant
 // and only the last four bits of the last bytes is used
@@ -14,6 +14,8 @@ uint32_t To20Bit(uint8_t *val) {
            (static_cast<uint32_t>(val[2]) << 16)) &
            0x03FFFF;
 }
+double targets[4][3] = {{1.0, 0.0, 0.0},{0.0, 1.0, 0.0},{0.0, 0.0, 1.0},{0.5, 0.5, 0.0}};
+ColorSensor colorSensor(20, targets);
 
 void setup() {
   // put your setup code here, to run once:
@@ -46,7 +48,7 @@ void setup() {
   Wire.beginTransmission(4); // transmit to device #4
   Wire.write("Setup Complete");        // sends five bytes  
   Wire.endTransmission();
-  
+
 }
 
 void loop() {
@@ -57,13 +59,14 @@ void loop() {
   Wire.requestFrom(82, 9);
   byte raw[9];
   for(int i = 0; i < 9; i++){
-    raw[i] = Wire.receive();
+    raw[i] = Wire.read();
   }
   uint32_t green = To20Bit(raw); //First three bytes
   uint32_t blue= To20Bit(raw + 3); //Second three bytes
   uint32_t red = To20Bit(raw + 6); //Last three byes
 
-  Serial.print(red); Serial.print(","); Serial.print(green); Serial.print(","); Serial.println(blue);
+  int rgb[3] = {(red), (green), (blue)};
+  Serial.println(colorSensor.senseColor( rgb ));
   delay(10);
 
 }

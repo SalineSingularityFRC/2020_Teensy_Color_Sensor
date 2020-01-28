@@ -12,10 +12,11 @@ private:
     CircularBuffer red;
     CircularBuffer green;
     CircularBuffer blue;
-    double convertColor(int rawColor[3])[3];
+    double * convertColor(int rawColor[3]);
+    ColorMatcher color;
 
 public:
-    ColorMatcher();
+    ColorSensor(int size, double colorTargets[4][3]);
     int senseColor(int rawColor[3]);
 
 };

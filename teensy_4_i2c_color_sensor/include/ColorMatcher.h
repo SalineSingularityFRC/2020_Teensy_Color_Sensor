@@ -7,11 +7,11 @@
 class ColorMatcher{
 
 private:
-    double * colorTargets[3];
+    double colorTargets[4][3];
     double distance3d(double pointOne[3], double pointTwo[3]);
 
 public:
-    ColorMatcher(double * colorTargets[]);
+    ColorMatcher(double colorTargets[4][3]);
     int matchColor(double color[3]);
 
 };
