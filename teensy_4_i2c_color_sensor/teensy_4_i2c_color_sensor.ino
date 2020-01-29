@@ -1,5 +1,6 @@
 #include <Wire.h>
 #include "include/ColorSensor.h"
+#include "include/ColorMatcher.h"
 
 // Converts 20 binary bits to an integer, where the last bit of the first byte is the least significant
 // and only the last four bits of the last bytes is used
@@ -49,6 +50,15 @@ void setup() {
   Wire.write("Setup Complete");        // sends five bytes  
   Wire.endTransmission();
 
+  ColorMatcher colorMatch(targets);
+  double color1[3] = {0.8, 0.0, 0.0};
+  double color2[3] = {0.0, 0.9, 0.0};
+  double color3[3] = {0.0, 1.0, 0.7};
+  double color4[3] = {0.4, 0.6, 0.0};
+  Serial.println(colorMatch.matchColor(color1));
+  Serial.println(colorMatch.matchColor(color2));
+  Serial.println(colorMatch.matchColor(color3));
+  Serial.println(colorMatch.matchColor(color4));
 }
 
 void loop() {
