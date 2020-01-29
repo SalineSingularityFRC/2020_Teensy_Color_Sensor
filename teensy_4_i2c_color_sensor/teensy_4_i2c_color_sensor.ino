@@ -15,7 +15,7 @@ uint32_t To20Bit(uint8_t *val) {
            (static_cast<uint32_t>(val[2]) << 16)) &
            0x03FFFF;
 }
-double targets[4][3] = {{1.0, 0.0, 0.0},{0.0, 1.0, 0.0},{0.0, 0.0, 1.0},{0.5, 0.5, 0.0}};
+double targets[4][3] = {{0.143, 0.427, 0.429},{0.197, 0.561, 0.240},{0.561, 0.232, 0.114},{0.361, 0.524, 0.113}};
 ColorSensor colorSensor(20, targets);
 
 void setup() {
@@ -75,6 +75,7 @@ void loop() {
   uint32_t blue= To20Bit(raw + 3); //Second three bytes
   uint32_t red = To20Bit(raw + 6); //Last three byes
 
+  Serial.print(red); Serial.print(","); Serial.print(green); Serial.print(","); Serial.println(blue);
   int rgb[3] = {(red), (green), (blue)};
   Serial.println(colorSensor.senseColor( rgb ));
   delay(10);
