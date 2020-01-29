@@ -5,6 +5,7 @@
 #include "include/ColorMatcher.h"
 #include "include/ColorSensor.h"
 #include "include/CircularBuffer.h"
+#include <Arduino.h>
 
 //Constructor to create an instance of a ColorSensor class
 ColorSensor::ColorSensor(int size, double colorTargets[4][3]):red(size),blue(size),green(size), color(colorTargets){
@@ -22,7 +23,11 @@ double * ColorSensor::convertColor(int rawColor[3]){
     color[2] = rawColor[2];
     double total = color[0] + color[1] + color[2];
     double percentColor[3] = {(color[0]/total),(color[1]/total), (color[2]/total)};
+    Serial.print(percentColor[0]);
+    Serial.print(percentColor[1]);
+    Serial.println(percentColor[2]);
     return percentColor;
+    
     
 }
 
