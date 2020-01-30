@@ -12,7 +12,7 @@ private:
     CircularBuffer red;
     CircularBuffer green;
     CircularBuffer blue;
-    double * convertColor(int rawColor[3]);
+    double * convertColor(int rawColor[3], double percentColor[3]);
     ColorMatcher color;
 
 public:

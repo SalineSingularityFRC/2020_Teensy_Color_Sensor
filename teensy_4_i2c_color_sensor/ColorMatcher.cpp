@@ -36,7 +36,7 @@ int ColorMatcher::matchColor(double *color){
     //Loop through each of the colorTargets you stored earlier and check the distance between the color input and
     //each color in the array to find their distance, return the index of the closest color
     double closest = distance3d(this->colorTargets[0], color);
-    int index;
+    int index = 0;
     for(int r = 0; r < 4; r++){
         if( (distance3d(this->colorTargets[r], color)) < closest){
           closest = distance3d(this->colorTargets[r], color);

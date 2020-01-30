@@ -50,10 +50,13 @@ void setup() {
   Wire.write("Setup Complete");        // sends five bytes  
   Wire.endTransmission();
 
+//{0.143, 0.427, 0.429},{0.197, 0.561, 0.240},{0.561, 0.232, 0.114},{0.361, 0.524, 0.113}}
+
   ColorMatcher colorMatch(targets);
-  double color1[3] = {0.8, 0.0, 0.0};
-  double color2[3] = {0.0, 0.9, 0.0};
-  double color3[3] = {0.0, 1.0, 0.7};
+  double color1[3] = {0.1, 0.5, 0.5};
+  double color2[3] = {0.2, 0.6, 0.2};
+  
+  double color3[3] = {0.6, 0.3, 0.1};
   double color4[3] = {0.4, 0.6, 0.0};
   Serial.println(colorMatch.matchColor(color1));
   Serial.println(colorMatch.matchColor(color2));
@@ -75,9 +78,10 @@ void loop() {
   uint32_t blue= To20Bit(raw + 3); //Second three bytes
   uint32_t red = To20Bit(raw + 6); //Last three byes
 
-  Serial.print(red); Serial.print(","); Serial.print(green); Serial.print(","); Serial.println(blue);
+  //Serial.print(red); Serial.print(","); Serial.print(green); Serial.print(","); Serial.println(blue);
   int rgb[3] = {(red), (green), (blue)};
   Serial.println(colorSensor.senseColor( rgb ));
   delay(10);
+  
 
 }
