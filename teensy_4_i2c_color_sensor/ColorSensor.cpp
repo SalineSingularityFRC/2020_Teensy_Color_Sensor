@@ -25,9 +25,9 @@ double * ColorSensor::convertColor(int rawColor[3], double percentColor[3]){
     percentColor[0] = (color[0]/total);
     percentColor[1] = (color[1]/total);
     percentColor[2]= (color[2]/total);
-    Serial.print(percentColor[0]);
-    Serial.print(percentColor[1]);
-    Serial.println(percentColor[2]);
+    //Serial.print(percentColor[0]);
+    //Serial.print(percentColor[1]);
+    //Serial.println(percentColor[2]);
     return percentColor;
     
     

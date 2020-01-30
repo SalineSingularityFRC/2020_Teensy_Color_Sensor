@@ -1,6 +1,7 @@
 #include <Wire.h>
 #include "include/ColorSensor.h"
 #include "include/ColorMatcher.h"
+#include "include/ColorCounter.h"
 
 // Converts 20 binary bits to an integer, where the last bit of the first byte is the least significant
 // and only the last four bits of the last bytes is used
@@ -17,6 +18,7 @@ uint32_t To20Bit(uint8_t *val) {
 }
 double targets[4][3] = {{0.143, 0.427, 0.429},{0.197, 0.561, 0.240},{0.561, 0.232, 0.114},{0.361, 0.524, 0.113}};
 ColorSensor colorSensor(20, targets);
+ColorCounter colorCounter;
 
 void setup() {
   // put your setup code here, to run once:
@@ -49,19 +51,7 @@ void setup() {
   Wire.beginTransmission(4); // transmit to device #4
   Wire.write("Setup Complete");        // sends five bytes  
   Wire.endTransmission();
-
-//{0.143, 0.427, 0.429},{0.197, 0.561, 0.240},{0.561, 0.232, 0.114},{0.361, 0.524, 0.113}}
-
-  ColorMatcher colorMatch(targets);
-  double color1[3] = {0.1, 0.5, 0.5};
-  double color2[3] = {0.2, 0.6, 0.2};
   
-  double color3[3] = {0.6, 0.3, 0.1};
-  double color4[3] = {0.4, 0.6, 0.0};
-  Serial.println(colorMatch.matchColor(color1));
-  Serial.println(colorMatch.matchColor(color2));
-  Serial.println(colorMatch.matchColor(color3));
-  Serial.println(colorMatch.matchColor(color4));
 }
 
 void loop() {
@@ -81,6 +71,9 @@ void loop() {
   //Serial.print(red); Serial.print(","); Serial.print(green); Serial.print(","); Serial.println(blue);
   int rgb[3] = {(red), (green), (blue)};
   Serial.println(colorSensor.senseColor( rgb ));
+  int currentColor = colorSensor.senseColor( rgb );
+  int totalColor = colorCounter.colorCount(currentColor);
+  Serial.println(totalColor);
   delay(10);
   
 
