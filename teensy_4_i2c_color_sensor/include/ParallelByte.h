@@ -3,15 +3,17 @@
 //
 
 
-#ifndef APDS9151_h
-#define APDS9151_h
-class APDS9151{
+#ifndef ParallelByte_h
+#define ParallelByte_h
+class ParallelByte{
 
 private:
-    uint32_t To20Bit(uint8_t *val);
-
+    int intToByte(int count, int color);
+	int intToIO(int data);
+	int pinArray[8];
 public:
-    int getData(int rgb[3])[3];
-	APDS9151(int power, int gnd, int scl, int sda);
+    void sendData(int count, int color);
+	void init(int pinArray[8]);
+	ParallelByte(){};
 };
 #endif

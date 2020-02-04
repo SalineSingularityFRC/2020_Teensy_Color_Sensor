@@ -37,7 +37,7 @@ uint32_t APDS9151::To20Bit(uint8_t *val) {
            0x03FFFF;
 }
 
-int APDS9151::getData(int rgb[3])[3]{
+void APDS9151::getData(int rgb[3]){
   Wire.beginTransmission(82);
   Wire.write(0x0d);  //Read Location
   Wire.endTransmission();
@@ -50,10 +50,9 @@ int APDS9151::getData(int rgb[3])[3]{
   uint32_t blue= To20Bit(raw + 3); //Second three bytes
   uint32_t red = To20Bit(raw + 6); //Last three byes
 
-  Serial.print(red); Serial.print(","); Serial.print(green); Serial.print(","); Serial.println(blue);
+  //Serial.print(red); Serial.print(","); Serial.print(green); Serial.print(","); Serial.println(blue);
   rgb[0] = red;
   rgb[1] = green;
   rgb[2] = blue;
 
-  return rgb;
 }

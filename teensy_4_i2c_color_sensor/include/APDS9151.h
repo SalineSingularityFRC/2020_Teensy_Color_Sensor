@@ -2,6 +2,7 @@
 // Created by Travis on 1/31/2020.
 //
 
+#include <Arduino.h>
 
 #ifndef APDS9151_h
 #define APDS9151_h
@@ -11,7 +12,8 @@ private:
     uint32_t To20Bit(uint8_t *val);
 
 public:
-    int getData(int rgb[3])[3];
-	APDS9151(int power, int gnd, int scl, int sda);
+    void getData(int rgb[3]);
+	void init(int power, int gnd, int scl, int sda);
+	APDS9151(){};
 };
 #endif

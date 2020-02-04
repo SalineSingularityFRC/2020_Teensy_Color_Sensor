@@ -1,4 +1,3 @@
-
 #include "include/ColorMatcher.h"
 #include "include/ColorSensor.h"
 #include "include/CircularBuffer.h"

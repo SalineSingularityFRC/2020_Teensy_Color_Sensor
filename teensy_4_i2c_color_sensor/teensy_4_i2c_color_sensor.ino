@@ -2,6 +2,7 @@
 #include "include/ColorSensor.h"
 #include "include/ColorMatcher.h"
 #include "include/ColorCounter.h"
+#include "include/ParallelByte.h"
 #include "include/APDS9151.h"
 
 
@@ -19,9 +20,10 @@ ColorSensor colorSensor(20, targets);
 ColorCounter colorCounter;
 
 APDS9151 colorV3;
-ParallelByte teensyToRIO(pinArray);
+ParallelByte teensyToRIO;
 
 void setup() {
+  delay(10000);
   // put your setup code here, to run once:
   /*Serial.begin(9600);
   colorV3.init(21,20,19,18);
@@ -48,7 +50,7 @@ void setup() {
   
   pinMode(pinArray[6], OUTPUT);
   pinMode(pinArray[7], OUTPUT);*/
-  Serial.begin(9600);
+  //Serial.begin(9600);
 
 
 
@@ -57,8 +59,9 @@ void setup() {
   Serial.begin(9600);*/
 
   
-  colorV3.init(
-  Serial.println("Enabled Color Sensor!");
+  colorV3.init(20, 21, 19, 18);
+  teensyToRIO.init(pinArray);
+  //Serial.println("Enabled Color Sensor!");
   
 }
 
@@ -74,10 +77,11 @@ int intToIO(int data){
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
-
-  
-  
+  int rgb[3];
+  colorV3.getData(rgb);
+  int currentColor = colorSensor.senseColor(rgb);
+  int totalColor = colorCounter.colorCount(rgb);
+  teensyToRIO.sendData(totalColor, currentColor);
   delay(10);
   
 
