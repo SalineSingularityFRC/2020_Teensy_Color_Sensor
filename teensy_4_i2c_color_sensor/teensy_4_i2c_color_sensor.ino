@@ -83,7 +83,7 @@ void loop() {
   colorV3.getData(rgb);
   Serial.println("Trying to get data... ");
   int currentColor = colorSensor.senseColor(rgb);
-  int totalColor = colorCounter.colorCount(rgb);
+  int totalColor = colorCounter.colorCount(currentColor);
   teensyToRIO.sendData(totalColor, currentColor);
   Serial.println(currentColor);
   Serial.println(totalColor);
