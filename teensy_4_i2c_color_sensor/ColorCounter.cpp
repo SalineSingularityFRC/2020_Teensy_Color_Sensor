@@ -7,6 +7,7 @@
 //Constructor of ColorCounter Class
 ColorCounter::ColorCounter(){
     this->totalColor = 0;
+    this->prevColor = 0;
 }
 
 //Increases counter (totalColor) when it sees next expected Color
@@ -19,5 +20,6 @@ int ColorCounter::colorCount(int currentColor){
     this->totalColor++;
     this->prevColor = currentColor;
   }
+  Serial.println(this->prevColor);
   return this->totalColor;
 }

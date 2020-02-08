@@ -23,6 +23,7 @@ APDS9151 colorV3;
 ParallelByte teensyToRIO;
 
 void setup() {
+  Serial.begin(9600);
   delay(10000);
   // put your setup code here, to run once:
   /*Serial.begin(9600);
@@ -58,10 +59,11 @@ void setup() {
   Wire.onReceive(receiveEvent); // register event
   Serial.begin(9600);*/
 
+  pinMode(13, OUTPUT);
   
   colorV3.init(20, 21, 19, 18);
   teensyToRIO.init(pinArray);
-  //Serial.println("Enabled Color Sensor!");
+  Serial.println("Enabled Color Sensor!");
   
 }
 
@@ -79,9 +81,20 @@ void loop() {
   // put your main code here, to run repeatedly:
   int rgb[3];
   colorV3.getData(rgb);
+  Serial.println("Trying to get data... ");
   int currentColor = colorSensor.senseColor(rgb);
   int totalColor = colorCounter.colorCount(rgb);
   teensyToRIO.sendData(totalColor, currentColor);
+  Serial.println(currentColor);
+  Serial.println(totalColor);
+  Serial.println("Trying to Send Data... ");
+  if(currentColor == 1) {
+    digitalWrite(13, HIGH);
+  }
+  else {
+    digitalWrite(13, LOW);
+  }
+  Serial.println("End of Loop");
   delay(10);
   
 
