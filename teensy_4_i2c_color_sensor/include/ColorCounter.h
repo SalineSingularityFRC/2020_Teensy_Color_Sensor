@@ -13,5 +13,6 @@ private:
 public:
     int colorCount(int currentColor);
     ColorCounter();
+    void resetCount();
 };
 #endif

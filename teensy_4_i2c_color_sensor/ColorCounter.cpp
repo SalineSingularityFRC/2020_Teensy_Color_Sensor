@@ -23,3 +23,7 @@ int ColorCounter::colorCount(int currentColor){
   Serial.println(this->prevColor);
   return this->totalColor;
 }
+
+void ColorCounter::resetCount(){
+  totalColor = 0;
+}
