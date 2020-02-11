@@ -2,10 +2,12 @@
 // Created by Travis on 1/31/2020.
 //
 #include "include/ParallelByte.h"
+#include "include/ColorSensor.h"
+#include "include/ColorCounter.h"
 #include <Arduino.h>
 
-void ParallelByte::init(int pinArray[8]){
-  for(int i = 0; i < 8; i++){
+void ParallelByte::init(int pinArray[9]){
+  for(int i = 0; i < 9; i++){
     this->pinArray[i] = pinArray[i];
   }
 
@@ -19,6 +21,7 @@ void ParallelByte::init(int pinArray[8]){
   
   pinMode(pinArray[6], OUTPUT);
   pinMode(pinArray[7], OUTPUT);
+  pinMode(pinArray[8], INPUT);
 }
 
 int ParallelByte::intToByte(int count, int color){ // color is th 2 bits, 4 numbers total (0,1,2,3)
@@ -33,4 +36,8 @@ int ParallelByte::intToIO(int data){
 
 void ParallelByte::sendData(int count, int color){
   intToIO(intToByte(count, color));
+}
+
+void ParallelByte::checkReset(ColorCounter colorCount){
+  if( this->pinArray[8] == HIGH) colorCount.resetCount();
 }
