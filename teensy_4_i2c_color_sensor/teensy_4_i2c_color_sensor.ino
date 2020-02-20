@@ -6,7 +6,7 @@
 #include "include/APDS9151.h"
 
 
-int pinArray[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+int pinArray[9] = {12, 11, 10, 9, 7, 5, 4, 3, 1};
 
 // Converts 20 binary bits to an integer, where the last bit of the first byte is the least significant
 // and only the last four bits of the last bytes is used
@@ -85,6 +85,7 @@ void loop() {
   int currentColor = colorSensor.senseColor(rgb);
   int totalColor = colorCounter.colorCount(currentColor);
   teensyToRIO.sendData(totalColor, currentColor);
+  teensyToRIO.checkReset(colorCounter);
   Serial.println(currentColor);
   Serial.println(totalColor);
   Serial.println("Trying to Send Data... ");

@@ -25,5 +25,5 @@ int ColorCounter::colorCount(int currentColor){
 }
 
 void ColorCounter::resetCount(){
-  totalColor = 0;
+  this->totalColor = 0;
 }
