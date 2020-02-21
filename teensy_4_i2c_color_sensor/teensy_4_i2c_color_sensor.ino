@@ -85,7 +85,7 @@ void loop() {
   int currentColor = colorSensor.senseColor(rgb);
   int totalColor = colorCounter.colorCount(currentColor);
   teensyToRIO.sendData(totalColor, currentColor);
-  teensyToRIO.checkReset(colorCounter);
+  teensyToRIO.checkReset(&colorCounter);
   Serial.println(currentColor);
   Serial.println(totalColor);
   Serial.println("Trying to Send Data... ");

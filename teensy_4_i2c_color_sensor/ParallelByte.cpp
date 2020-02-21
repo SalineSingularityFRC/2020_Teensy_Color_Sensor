@@ -38,9 +38,9 @@ void ParallelByte::sendData(int count, int color){
   intToIO(intToByte(count, color));
 }
 
-void ParallelByte::checkReset(ColorCounter colorCount){
-  if( this->pinArray[8] == HIGH) {
-    colorCount.resetCount();
+void ParallelByte::checkReset(ColorCounter * colorCount){
+  if( digitalRead(this->pinArray[8]) == HIGH) {
+    colorCount->resetCount();
     Serial.println("RESET REQUESTED");
   }
 }

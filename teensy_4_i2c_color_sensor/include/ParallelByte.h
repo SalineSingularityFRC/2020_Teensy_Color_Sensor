@@ -18,6 +18,6 @@ public:
     void sendData(int count, int color);
     void init(int pinArray[9]);
     ParallelByte(){};
-    void checkReset(ColorCounter colorCount);
+    void checkReset(ColorCounter * colorCount);
 };
 #endif
