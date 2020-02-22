@@ -88,6 +88,7 @@ void loop() {
   teensyToRIO.checkReset(&colorCounter);
   Serial.println(currentColor);
   Serial.println(totalColor);
+  
   Serial.println("Trying to Send Data... ");
   if(currentColor == 1) {
     digitalWrite(13, HIGH);
